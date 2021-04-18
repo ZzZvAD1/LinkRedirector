@@ -1,7 +1,0 @@
-{
-  "Default": {
-    "TargetProgram": "C:\\Windows\\System32\\cmd.exe",
-    "Arguments": "/c \"default.bat \"{0}\"\""
-  },
-  "Redirects": []
-}
