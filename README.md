@@ -4,7 +4,7 @@
 
 # Установка
 
-1. Скачать архив по ссылке https://disk.yandex.ru/d/gh2aIh1R8tofXA или собрать из исходников
+1. Скачать последнюю версию по ссылке https://github.com/ZzZvAD1/LinkRedirector/releases
 2. Распаковать содержимое архива в папку постоянного проживания утилиты, в моём случае например "C:\Program Files (x86)\Link Redirector"
 3. Запустить setup.bat, он создаст необходимы ключи реестра и добавит папку, в которой находится, в переменную окружения Path (uninstall.bat собственно всё это подчищает)
 4. Добавить необходимую конфигурацию в файле settings.json (об этом ниже)
@@ -16,8 +16,8 @@
 Пример:
 ```json
 "Default": {
-	"TargetProgram": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
-	"Arguments": "-osint -url \"{0}\""
+    "TargetProgram": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+    "Arguments": "-osint -url \"{0}\""
 }
 ```
 Или тоже самое через класс в реестре Windows:
@@ -32,16 +32,16 @@
 Пример:
 ```json
 "Redirects": [
-	{
-		"Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
-		"Replacement": "--protocol-uri=\"spotify:$1:$2\"",
-		"TargetProgram": "C:\\Users\\ZzZvAD\\AppData\\Roaming\\Spotify\\Spotify.exe"
-	},
     {
-      "ProcessNamePattern": "slack",
-      "Pattern": "^.*$",
-      "Replacement": "--single-argument $0",
-      "TargetProgram": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+        "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
+        "Replacement": "--protocol-uri=\"spotify:$1:$2\"",
+        "TargetProgram": "C:\\Users\\ZzZvAD\\AppData\\Roaming\\Spotify\\Spotify.exe"
+    },
+    {
+        "ProcessNamePattern": "slack",
+        "Pattern": "^.*$",
+        "Replacement": "--single-argument $0",
+        "TargetProgram": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
     }
 ]
 ```
@@ -49,15 +49,15 @@
 ```json
 "Redirects": [
     {
-      "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
-      "Replacement": "spotify:$1:$2",
-	  "RegistryClass":  "spotify"
+        "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
+        "Replacement": "spotify:$1:$2",
+        "RegistryClass":  "spotify"
     },
     {
-      "ProcessNamePattern": "slack",
-      "Pattern": "^.*$",
-      "Replacement": "$0",
-	  "RegistryClass": "ChromeHTML"
+        "ProcessNamePattern": "slack",
+        "Pattern": "^.*$",
+        "Replacement": "$0",
+        "RegistryClass": "ChromeHTML"
     }
 ]
 ```
@@ -65,44 +65,44 @@
 В результате получится:
 ```json
 {
-	"Default": {
-		"TargetProgram": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
-		"Arguments": "-osint -url \"{0}\""
-	},
-	"Redirects": [
-		{
-			"Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
-			"Replacement": "--protocol-uri=\"spotify:$1:$2\"",
-			"TargetProgram": "C:\\Users\\ZzZvAD\\AppData\\Roaming\\Spotify\\Spotify.exe"
-		},
-		{
-		  "ProcessNamePattern": "slack",
-		  "Pattern": "^.*$",
-		  "Replacement": "--single-argument $0",
-		  "TargetProgram": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-		}
-	]
+    "Default": {
+        "TargetProgram": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+        "Arguments": "-osint -url \"{0}\""
+    },
+    "Redirects": [
+        {
+            "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
+            "Replacement": "--protocol-uri=\"spotify:$1:$2\"",
+            "TargetProgram": "C:\\Users\\ZzZvAD\\AppData\\Roaming\\Spotify\\Spotify.exe"
+        },
+        {
+            "ProcessNamePattern": "slack",
+            "Pattern": "^.*$",
+            "Replacement": "--single-argument $0",
+            "TargetProgram": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+        }
+    ]
 }
 ```
 Или тоже самое через класс в реестре Windows:
 ```json
 {
-  "Default": {
-    "RegistryClass": "FirefoxURL-308046B0AF4A39CB"
-  },
-  "Redirects": [
-    {
-      "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
-      "Replacement": "spotify:$1:$2",
-	  "RegistryClass":  "spotify"
+    "Default": {
+        "RegistryClass": "FirefoxURL-308046B0AF4A39CB"
     },
-    {
-      "ProcessNamePattern": "slack",
-      "Pattern": "^.*$",
-      "Replacement": "$0",
-	  "RegistryClass": "ChromeHTML"
-    }
-  ]
+    "Redirects": [
+        {
+            "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
+            "Replacement": "spotify:$1:$2",
+            "RegistryClass":  "spotify"
+        },
+        {
+            "ProcessNamePattern": "slack",
+            "Pattern": "^.*$",
+            "Replacement": "$0",
+            "RegistryClass": "ChromeHTML"
+        }
+    ]
 }
 ```
 
@@ -120,19 +120,23 @@
         "TargetProgram": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
         "Arguments": "-osint -url \"{0}\""
     },
-    "Redirects": [{
+    "Redirects": [
+	    {
             "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
             "Replacement": "--protocol-uri=\"spotify:$1:$2\"",
             "TargetProgram": "C:\\Users\\ZzZvAD\\AppData\\Roaming\\Spotify\\Spotify.exe"
-        }, {
+        }, 
+		{
             "Pattern": "^.*?teams\\.microsoft\\.com(.*)$",
             "Replacement": "\"msteams:$1&anon=true&launchAgent=join_launcher&type=meetup-join&directDl=true&msLaunch=true\"",
             "TargetProgram": "C:\\Users\\ZzZvAD\\AppData\\Local\\Microsoft\\Teams\\current\\Teams.exe"
-        }, {
-			"Pattern": "^.*\\/(.*\\.zoom\\.us)\\/j\\/(\\d+).*$",
-			"Replacement": "\"--url=zoommtg://$1/join?action=join&confno=$2\"",
-			"TargetProgram": "C:\\Users\\ZzZvAD\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe"
-		}, {
+        }, 
+		{
+            "Pattern": "^.*\\/(.*\\.zoom\\.us)\\/j\\/(\\d+).*$",
+            "Replacement": "\"--url=zoommtg://$1/join?action=join&confno=$2\"",
+            "TargetProgram": "C:\\Users\\ZzZvAD\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe"
+        }, 
+		{
             "ProcessNamePattern": "slack",
             "Pattern": "^.*$",
             "Replacement": "//b RemoteRedirect.vbs \"$0\" \"#unknown#\"",
@@ -143,22 +147,22 @@
 ```
 ```json
 {
-  "Default": {
-    "RegistryClass": "FirefoxURL-308046B0AF4A39CB"
-  },
-  "Redirects": [
-    {
-      "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
-      "Replacement": "spotify:$1:$2",
-	  "RegistryClass":  "spotify"
+    "Default": {
+        "RegistryClass": "FirefoxURL-308046B0AF4A39CB"
     },
-    {
-      "ProcessNamePattern": "slack",
-      "Pattern": "^.*$",
-      "Replacement": "$0",
-	  "RegistryClass": "ChromeHTML"
-    }
-  ]
+    "Redirects": [
+        {
+            "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
+            "Replacement": "spotify:$1:$2",
+            "RegistryClass":  "spotify"
+        },
+        {
+            "ProcessNamePattern": "slack",
+            "Pattern": "^.*$",
+            "Replacement": "$0",
+            "RegistryClass": "ChromeHTML"
+        }
+    ]
 }
 ```
 ```json
@@ -166,19 +170,23 @@
     "Default": {
         "RegistryClass":  "FirefoxURL-308046B0AF4A39CB"
     },
-    "Redirects": [{
-		    "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
-		    "Replacement": "spotify:$1:$2",
-		    "RegistryClass":  "spotify"
-		}, {
+    "Redirects": [
+	    {
+            "Pattern": "^.*?spotify\\.com\\/([^/]+)\\/([^?]*)\\?.*$",
+            "Replacement": "spotify:$1:$2",
+            "RegistryClass":  "spotify"
+        }, 
+		{
             "Pattern": "^.*?teams\\.microsoft\\.com(.*)$",
             "Replacement": "msteams:$1&anon=true&launchAgent=join_launcher&type=meetup-join&directDl=true&msLaunch=true",
             "RegistryClass": "msteams"
-        }, {
-			"Pattern": "^.*\\/(.*\\.zoom\\.us)\\/j\\/(\\d+).*$",
-			"Replacement": "zoommtg://$1/join?action=join&confno=$2",
-			"RegistryClass": "ZoomLauncher"
-		}, {
+        }, 
+		{
+            "Pattern": "^.*\\/(.*\\.zoom\\.us)\\/j\\/(\\d+).*$",
+            "Replacement": "zoommtg://$1/join?action=join&confno=$2",
+            "RegistryClass": "ZoomLauncher"
+        }, 
+		{
             "ProcessNamePattern": "slack",
             "Pattern": "^.*$",
             "Replacement": "//b RemoteRedirect.vbs \"$0\" \"#unknown#\"",
